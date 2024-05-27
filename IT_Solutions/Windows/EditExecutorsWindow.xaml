@@ -1,0 +1,47 @@
+﻿<Window x:Class="IT_Solutions.Windows.EditExecutorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT_Solutions.Windows"
+        mc:Ignorable="d"
+        Title="EditExecutorsWindow" Height="245" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Логин -->
+        <Label Grid.Column="0" Grid.Row="0" Content="Логин:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxUsername" Margin="5"/>
+
+        <!-- Пароль -->
+        <Label Grid.Column="0" Grid.Row="1" Content="Пароль:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="PasswordBoxPassword" Margin="5"/>
+
+        <!-- Фамилия -->
+        <Label Grid.Column="0" Grid.Row="2" Content="Фамилия:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="2" x:Name="TextBoxLastName" Margin="5"/>
+
+        <!-- Имя -->
+        <Label Grid.Column="0" Grid.Row="3" Content="Имя:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="TextBoxFirstName" Margin="5"/>
+
+        <!-- Отчество -->
+        <Label Grid.Column="0" Grid.Row="4" Content="Отчество:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="TextBoxMiddleName" Margin="5"/>
+
+        <!-- Кнопка "Сохранить" -->
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Сохранить" Margin="5" Click="SaveButton_Click" FontWeight="Bold" Background="#FF7DF188" BorderBrush="#FF23BB32"/>
+    </Grid>
+</Window>

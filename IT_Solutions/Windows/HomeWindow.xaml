@@ -1,0 +1,75 @@
+﻿<Window x:Class="IT_Solutions.Windows.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT_Solutions.Windows"
+        mc:Ignorable="d"
+        Title="HomeWindow" Height="600" Width="900" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top" Grid.Row="0">
+            <MenuItem Header="Исполнители" FontSize="24" Name="ExecutorsMenuItem" Click="ExecutorsMenuItem_Click"></MenuItem>
+            <MenuItem Header="Оборудование" FontSize="24" Margin="15,0,0,0" Name="EquipmentMenuItem" Click="EquipmentMenuItem_Click"></MenuItem>
+            <MenuItem Header="Клиенты" FontSize="24" Margin="15,0,0,0" Name="ClientsMenuItem" Click="ClientsMenuItem_Click"></MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchTextBox"  Width="184" Margin="0,0,10,0" TextChanged="SearchTextBox_TextChanged"/>
+            <Label Content="Тип проблемы" FontSize="18" Margin="10,0,0,0"></Label>
+            <ComboBox x:Name="ProblemTypeComboBox" Width="171" Margin="0,0,10,0"  FontSize="16" SelectionChanged="ProblemTypeComboBox_SelectionChanged">
+                <ComboBoxItem Content="Все"/>
+                <ComboBoxItem Content="Hardware"/>
+                <ComboBoxItem Content="Software"/>
+            </ComboBox>
+            <Label Content="Статус" FontSize="18" Margin="10,0,0,0"></Label>
+            <ComboBox x:Name="StatusComboBox" Width="173" Margin="0,0,10,0"  FontSize="16" SelectionChanged="StatusComboBox_SelectionChanged">
+                <ComboBoxItem Content="Все"/>
+                <ComboBoxItem Content="В работе"/>
+                <ComboBoxItem Content="В ожидании"/>
+                <ComboBoxItem Content="Выполнено"/>
+            </ComboBox>
+        </StackPanel>
+
+        <DataGrid x:Name="dataGrid" Grid.Row="2"   AutoGenerateColumns="False" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" ColumnWidth="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер Заявки" Binding="{Binding Request_Number}" IsReadOnly="False"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата Добавления" Binding="{Binding Date_Added}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Оборудования" Binding="{Binding Equipment.Equipment_Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Тип Проблемы" Binding="{Binding Issue_Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Описание Проблемы" Binding="{Binding Issue_Description}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Clients.Last_Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус Заявки" Binding="{Binding Request_Status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата Ответа" Binding="{Binding Response_Date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ответ" Binding="{Binding Response}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Users.Last_Name}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnEditRequest" Content="Редактировать" Click="BtnEditRequest_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="SendRequestButton" Content="Новая заявка" FontSize="16" Width="130" Margin="0,0,20,0" Click="SendRequestButton_Click" Background="#FF6BA9ED" BorderBrush="{x:Null}" Foreground="White" OpacityMask="Black"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="BackButton" Content="Выход" FontSize="14" Width="55" Click="BackButton_Click" Background="#FF6BA9ED"/>
+        </StackPanel>
+    </Grid>
+</Window>

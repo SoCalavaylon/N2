@@ -1,0 +1,45 @@
+﻿<Window x:Class="IT_Solutions.Windows.ExecutorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT_Solutions.Windows"
+        mc:Ignorable="d"
+        Title="ExecutorsWindow" Height="600" Width="900" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchTextBox"  Width="184" Margin="0,0,10,0"  Height="30" TextChanged="SearchTextBox_TextChanged"/>
+            
+        </StackPanel>
+
+        <DataGrid x:Name="dataGrid" Grid.Row="2"   AutoGenerateColumns="False" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" ColumnWidth="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Last_Name}" FontSize="18" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" FontSize="18" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Middle_Name}" FontSize="18" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnEditRequest" Content="Редактировать" Click="BtnEditRequest_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="SendRequestButton" Content="Добавить нового исполнителя" FontSize="16" Width="255" Margin="0,0,20,0" Click="SendRequestButton_Click" Background="#FF6BA9ED" BorderBrush="{x:Null}" Foreground="White" OpacityMask="Black"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="BackButton" Content="Назад" FontSize="14" Width="55" Click="BackButton_Click" Background="#FFB2D7FF"/>
+        </StackPanel>
+    </Grid>
+</Window>

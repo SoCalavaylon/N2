@@ -1,0 +1,71 @@
+﻿<Window x:Class="IT_Solutions.Windows.NewRequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT_Solutions.Windows"
+        mc:Ignorable="d"
+        Title="NewRequestsWindow" Height="500" Width="550" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Номер заявки -->
+        <Label Grid.Column="0" Grid.Row="0" Content="Номер заявки:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="TextBoxRequestNumber" Margin="5"/>
+
+        <!-- Дата добавления -->
+        <Label Grid.Column="0" Grid.Row="1" Content="Дата добавления:" FontWeight="Bold" Margin="5"/>
+        <DatePicker Grid.Column="1" Grid.Row="1" x:Name="DatePickerAdded" Margin="5"/>
+
+        <!-- Оборудование -->
+        <Label Grid.Column="0" Grid.Row="2" Content="Оборудование:" FontWeight="Bold" Margin="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="TextBoxEquipment" Margin="5"/>
+
+        <!-- Тип проблемы -->
+        <Label Grid.Column="0" Grid.Row="3" Content="Тип проблемы:" FontWeight="Bold" Margin="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" x:Name="ComboBoxIssueType" Margin="5"></ComboBox>
+
+        <!-- Описание проблемы -->
+        <Label Grid.Column="0" Grid.Row="4" Content="Описание проблемы:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="TextBoxIssueDescription" Margin="5,5,5,5" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+        <!-- Клиент -->
+        <Label Grid.Column="0" Grid.Row="5" Content="Клиент:" FontWeight="Bold" Margin="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" x:Name="TextBoxClient" Margin="5"/>
+
+        <!-- Статус заявки -->
+        <Label Grid.Column="0" Grid.Row="6" Content="Статус заявки:" FontWeight="Bold" Margin="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" x:Name="ComboBoxRequestStatus" Margin="5"></ComboBox>
+
+        <!-- Дата ответа -->
+        <Label Grid.Column="0" Grid.Row="7" Content="Дата ответа:" FontWeight="Bold" Margin="5"/>
+        <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DatePickerResponse" Margin="5"/>
+
+        <!-- Ответ -->
+        <Label Grid.Column="0" Grid.Row="8" Content="Ответ:" FontWeight="Bold" Margin="5"/>
+        <TextBox Grid.Column="1" Grid.Row="8" x:Name="TextBoxResponse" Margin="5" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+        <!-- Исполнитель -->
+        <Label Grid.Column="0" Grid.Row="9" Content="Исполнитель:" FontWeight="Bold" Margin="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="9" x:Name="ComboBoxAssignedUser" Margin="5"/>
+
+        <!-- Кнопка "Сохранить" -->
+        <Button Grid.Row="11" x:Name="CreateButton" Content="Создать заявку" Margin="78,10,78,15" FontWeight="Bold" Background="#FF7DF188" BorderBrush="#FF23BB32" Grid.ColumnSpan="2" Click="CreateButton_Click"/>
+    </Grid>
+</Window>

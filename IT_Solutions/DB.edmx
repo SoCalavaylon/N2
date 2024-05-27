@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RepManageDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Client_ID" />
+          </Key>
+          <Property Name="Client_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Middle_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone_Number" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Equipment_ID" />
+          </Key>
+          <Property Name="Equipment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Equipment_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Model" Type="nvarchar" MaxLength="100" />
+          <Property Name="Serial_Number" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="Request_Number" />
+          </Key>
+          <Property Name="Request_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date_Added" Type="date" />
+          <Property Name="Equipment_ID" Type="int" />
+          <Property Name="Issue_Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Issue_Description" Type="nvarchar(max)" />
+          <Property Name="Client_ID" Type="int" />
+          <Property Name="Request_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Response_Date" Type="date" />
+          <Property Name="Response" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Middle_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Requests__Equipm__403A8C7D">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Equipment_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Equipment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Clients1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RepManageDBModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Requests__Equipm__403A8C7D" Association="Self.FK__Requests__Equipm__403A8C7D">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Clients1" Association="Self.FK_Requests_Clients1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="Self.FK_Requests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RepManageDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Client_ID" />
+          </Key>
+          <Property Name="Client_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Clients1" FromRole="Clients" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Equipment_ID" />
+          </Key>
+          <Property Name="Equipment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Equipment_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Serial_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Equipm__403A8C7D" FromRole="Equipment" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="Request_Number" />
+          </Key>
+          <Property Name="Request_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_Added" Type="DateTime" Precision="0" />
+          <Property Name="Equipment_ID" Type="Int32" />
+          <Property Name="Issue_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Issue_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Client_ID" Type="Int32" />
+          <Property Name="Request_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Response_Date" Type="DateTime" Precision="0" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Requests_Clients1" FromRole="Requests" ToRole="Clients" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Requests__Equipm__403A8C7D" FromRole="Requests" ToRole="Equipment" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Requests_Users" FromRole="Requests" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Middle_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Users" FromRole="Users" ToRole="Requests" />
+        </EntityType>
+        <Association Name="FK_Requests_Clients1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Equipm__403A8C7D">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Equipment_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="Equipment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepManageDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Requests_Clients1" Association="Self.FK_Requests_Clients1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Equipm__403A8C7D" Association="Self.FK__Requests__Equipm__403A8C7D">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Users" Association="Self.FK_Requests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RepManageDBModelContainer" CdmEntityContainer="RepManageDBEntities1">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="RepManageDBModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="RepManageDBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="Equipment_Name" ColumnName="Equipment_Name" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="RepManageDBModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="Request_Number" ColumnName="Request_Number" />
+                <ScalarProperty Name="Date_Added" ColumnName="Date_Added" />
+                <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+                <ScalarProperty Name="Issue_Type" ColumnName="Issue_Type" />
+                <ScalarProperty Name="Issue_Description" ColumnName="Issue_Description" />
+                <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+                <ScalarProperty Name="Request_Status" ColumnName="Request_Status" />
+                <ScalarProperty Name="Response_Date" ColumnName="Response_Date" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RepManageDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
